@@ -7,8 +7,8 @@ class Player {
   float velocityX = 0;
   float velocityY = 0;
   
-  float movementForce = 25;
-  float resistance = 0.9;
+  float movementForce = 10;
+  float trim = 0.9;
   
   
   Player(float x, float y) {
@@ -17,7 +17,11 @@ class Player {
   }
   
   void update() {
+    this.posY += this.velocityY;
+    this.velocityY *= this.trim;
     
+    this.posX += this.velocityX;
+    this.velocityX *= this.trim;
   }
   
   void show() {
@@ -27,6 +31,17 @@ class Player {
   }
   
   // Behavioural methods:
-  
-  
+  void jump(int direction) {
+    switch (direction) {
+      case 1: // Up
+        this.velocityY += -this.movementForce;
+      break;
+      case 2: // Left
+        this.velocityX += -this.movementForce;
+      break;
+      case 3: // Right
+        this.velocityX += this.movementForce;
+      break;
+    }
+  }
 }
