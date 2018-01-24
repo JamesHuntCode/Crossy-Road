@@ -36,10 +36,13 @@ class Player {
       case 1: // Up
         this.velocityY += -this.movementForce;
       break;
-      case 2: // Left
+      case 2: // Down
+        this.velocityY += this.movementForce;
+      break;
+      case 3: // Left
         this.velocityX += -this.movementForce;
       break;
-      case 3: // Right
+      case 4: // Right
         this.velocityX += this.movementForce;
       break;
     }
