@@ -1,11 +1,21 @@
 Player playerIcon;
-Car testCar;
+ArrayList<Car> cars;
 
 void setup() {
    size(600, 600);
    
-    playerIcon = new Player(width / 2, height - 25);
-    testCar = new Car(width / 2, height / 2);
+   playerIcon = new Player(width / 2, height - 25);
+    
+   cars = new ArrayList<Car>();
+   
+   int margin = 75;
+   int offsetY = height - margin;
+   int offsetIncrement = 50;
+   
+   for (int i = 0; i < 10; i++) {
+     cars.add(new Car(width / 2, offsetY));
+     offsetY -= offsetIncrement;
+   }
 }
 
 void draw() {
@@ -16,8 +26,13 @@ void draw() {
    playerIcon.update();
    
    // Draw vehicles for player to dodge
-   testCar.update();
-   testCar.show();
+   for (int i = 0; i < cars.size(); i++) {
+     Car currentCar = cars.get(i);
+     
+     currentCar.update();
+     currentCar.show();
+     currentCar.edges();
+   }
 }
 
 void keyPressed() {

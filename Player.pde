@@ -4,6 +4,7 @@ class Player {
   
   float sideLength = 50;
   
+  // Movement Engine
   float velocityX = 0;
   float velocityY = 0;
   
