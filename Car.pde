@@ -11,19 +11,10 @@ class Car {
   float g = random(0, 255);
   float b = random(0, 255);
   
-  Car(float x, float y) {
+  Car(float x, float y, float s) {
     this.posX = x;
     this.posY = y;
-    
-    speed = random(-5, 5);
-    
-    if (speed > -2 && speed < 2) {
-      if (random(1) > 0.5) {
-        speed = 3;
-      } else {
-        speed = -3;
-      }
-    }
+    this.speed = s;
   }
   
   void update() {
@@ -44,5 +35,9 @@ class Car {
      } else if (this.posX - this.sideLength / 2 > width) {
        this.posX = -this.sideLength / 2;
      }
+  }
+  
+  void scale() {
+    
   }
 }

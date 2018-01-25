@@ -12,8 +12,20 @@ void setup() {
    int offsetY = height - margin;
    int offsetIncrement = 50;
    
+   float calculatedSpeed;
+   float defaultSpeed = 2.5;
+   
    for (int i = 0; i < 10; i++) {
-     cars.add(new Car(width / 2, offsetY));
+     calculatedSpeed = random(-5, 5);
+     if (calculatedSpeed > -2 && calculatedSpeed < 2) {
+       if (random(1) > 0.5) {
+         calculatedSpeed = defaultSpeed;
+       } else {
+         calculatedSpeed = -defaultSpeed;
+       }
+     }
+     
+     cars.add(new Car(random(0, width), offsetY, calculatedSpeed));
      offsetY -= offsetIncrement;
    }
 }

@@ -8,7 +8,7 @@ class Player {
   float velocityX = 0;
   float velocityY = 0;
   
-  float movementForce = 10;
+  float movementForce = 5;
   float trim = 0.9;
   
   
@@ -47,5 +47,9 @@ class Player {
         this.velocityX += this.movementForce;
       break;
     }
+  }
+  
+  void scale() {
+    
   }
 }
