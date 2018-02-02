@@ -6,10 +6,15 @@ class Car {
   
   float speed;
   
+  // Movement engine (for scaling purposes)
+  float velocityY = 0;
+  float movementEase = 5;
+  float resistance = 0.9;
+  
   // Color Properties
-  float r = random(0, 255);
-  float g = random(0, 255);
-  float b = random(0, 255);
+  float r = random(50, 255);
+  float g = random(50, 255);
+  float b = random(50, 255);
   
   Car(float x, float y, float s) {
     this.posX = x;
@@ -19,6 +24,11 @@ class Car {
   
   void update() {
     this.posX += this.speed;
+    
+    if (velocityY > 0) {
+      this.posY += this.velocityY;
+      this.velocityY *= this.resistance;
+    }
   }
   
   void show() {
@@ -38,7 +48,7 @@ class Car {
   }
   
   void scale() {
-    
+    this.velocityY += this.movementEase;
   }
   
   boolean hitsPlayer(Player player) {

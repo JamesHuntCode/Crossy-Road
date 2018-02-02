@@ -15,7 +15,7 @@ void setup() {
    float calculatedSpeed;
    float defaultSpeed = 2.5;
    
-   for (int i = 0; i < 10; i++) {
+   for (int i = 0; i < 25; i++) {
      calculatedSpeed = random(-5, 5);
      if (calculatedSpeed > -2 && calculatedSpeed < 2) {
        if (random(1) > 0.5) {
@@ -37,6 +37,15 @@ void draw() {
    playerIcon.show();
    playerIcon.update();
    
+   if (playerIcon.posY < height / 2) {
+     playerIcon.scale();
+     
+     for (int i = 0; i < cars.size(); i++) {
+        Car currentCar = cars.get(i);
+        currentCar.scale();
+     }
+   }
+   
    // Draw vehicles for player to dodge
    for (int i = 0; i < cars.size(); i++) {
      Car currentCar = cars.get(i);
@@ -49,10 +58,11 @@ void draw() {
    // Control car behaviours 
    for (int i = 0; i < cars.size(); i++) {
      Car currentCar = cars.get(i);
-     if (currentCar.hitsPlayer(playerIcon)) {
+     
+     /*if (currentCar.hitsPlayer(playerIcon)) {
        playerIcon.posX = width / 2;
        playerIcon.posY = height - 25;
-     }
+     }*/
    }
 }
 
