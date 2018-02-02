@@ -40,4 +40,11 @@ class Car {
   void scale() {
     
   }
+  
+  boolean hitsPlayer(Player player) {
+    return !(this.posX > player.posX + player.sideLength ||
+             this.posX + this.sideLength < player.posX ||
+             this.posY > player.posY + player.sideLength ||
+             this.posY + this.sideLength < player.posY);
+  }
 }

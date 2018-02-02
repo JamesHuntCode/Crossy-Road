@@ -45,6 +45,15 @@ void draw() {
      currentCar.show();
      currentCar.edges();
    }
+   
+   // Control car behaviours 
+   for (int i = 0; i < cars.size(); i++) {
+     Car currentCar = cars.get(i);
+     if (currentCar.hitsPlayer(playerIcon)) {
+       playerIcon.posX = width / 2;
+       playerIcon.posY = height - 25;
+     }
+   }
 }
 
 void keyPressed() {
