@@ -5,6 +5,7 @@ class Car {
   float sideLength = 50;
   
   float speed;
+  float defaultSpeed = 2.5;
   
   // Movement engine (for scaling purposes)
   float velocityY = 0;
@@ -16,10 +17,18 @@ class Car {
   float g = random(50, 255);
   float b = random(50, 255);
   
-  Car(float x, float y, float s) {
+  Car(float x, float y) {
     this.posX = x;
     this.posY = y;
-    this.speed = s;
+    
+    this.speed = random(-5, 5);
+     if (this.speed > -2 && this.speed < 2) {
+       if (random(1) > 0.5) {
+         this.speed = defaultSpeed;
+       } else {
+         this.speed = -defaultSpeed;
+       }
+     }
   }
   
   void update() {

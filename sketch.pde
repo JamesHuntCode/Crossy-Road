@@ -1,6 +1,8 @@
 Player playerIcon;
 ArrayList<Car> cars;
 
+int offsetY;
+
 void setup() {
    size(600, 600);
    
@@ -9,24 +11,12 @@ void setup() {
    cars = new ArrayList<Car>();
    
    int margin = 75;
-   int offsetY = height - margin;
+   offsetY = height - margin;
    int offsetIncrement = 50;
-   
-   float calculatedSpeed;
-   float defaultSpeed = 2.5;
-   
-   for (int i = 0; i < 25; i++) {
-     calculatedSpeed = random(-5, 5);
-     if (calculatedSpeed > -2 && calculatedSpeed < 2) {
-       if (random(1) > 0.5) {
-         calculatedSpeed = defaultSpeed;
-       } else {
-         calculatedSpeed = -defaultSpeed;
-       }
-     }
-     
-     cars.add(new Car(random(0, width), offsetY, calculatedSpeed));
-     offsetY -= offsetIncrement;
+
+   for (int i = 0; i < 10; i++) {
+      cars.add(new Car(random(0, width), offsetY));
+      offsetY -= offsetIncrement;
    }
 }
 
@@ -59,10 +49,19 @@ void draw() {
    for (int i = 0; i < cars.size(); i++) {
      Car currentCar = cars.get(i);
      
-     /*if (currentCar.hitsPlayer(playerIcon)) {
+     if (currentCar.hitsPlayer(playerIcon)) {
        playerIcon.posX = width / 2;
        playerIcon.posY = height - 25;
-     }*/
+     }
+     
+     if (currentCar.posY > height) {
+       cars.remove(currentCar);
+       
+       for (int j = 0; j < 3; j++) {
+         cars.add(new Car(random(0, width), offsetY));
+         offsetY -= 50;
+       }
+     }
    }
 }
 
